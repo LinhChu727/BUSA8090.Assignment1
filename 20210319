@@ -1,0 +1,48 @@
+#Q1
+ubuntu@ip-172-31-39-208:~$ #!/bin/bash
+ubuntu@ip-172-31-39-208:~$ touch -t 202103081800 foo
+ubuntu@ip-172-31-39-208:~$ touch -t 202103081801 goo
+ubuntu@ip-172-31-39-208:~$ touch -t 202103081802 hoo
+ubuntu@ip-172-31-39-208:~$ ls
+foo  goo  hoo  sorted-file.save
+ubuntu@ip-172-31-39-208:~$ nano older.sh
+#ls -lt | tail -1
+ubuntu@ip-172-31-39-208:~$ ls -lt
+total 8
+-rw-rw-r-- 1 ubuntu ubuntu 15 Mar 18 15:18 older.sh
+-rw------- 1 ubuntu ubuntu  2 Mar 18 13:57 sorted-file.save
+-rw-rw-r-- 1 ubuntu ubuntu  0 Mar  8 18:02 hoo
+-rw-rw-r-- 1 ubuntu ubuntu  0 Mar  8 18:01 goo
+-rw-rw-r-- 1 ubuntu ubuntu  0 Mar  8 18:00 foo
+ubuntu@ip-172-31-39-208:~$ bash older.sh
+-rw-rw-r-- 1 ubuntu ubuntu  0 Mar  8 18:00 foo
+
+#Q2
+ubuntu@ip-172-31-39-208:~$ #Q2
+ubuntu@ip-172-31-39-208:~$ if [$# -eq 0]
+> then
+> echo "This is NOT funny"
+> else
+> echo "This is funny"
+> fi
+[0: command not found
+This is funny
+ubuntu@ip-172-31-39-208:~$ if [$# -eq 0]; then echo "This is NOT funny"; else echo "This is funny"; fi
+[0: command not found
+This is funny
+
+#Q3a
+ubuntu@ip-172-31-39-208:~$ curl https://www.staff.hs-mittweida.de/~https://www.staff.hs-mittweida.de/~ >Q3a
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   250  100   250    0     0    349      0 --:--:-- --:--:-- --:--:--   349
+ubuntu@ip-172-31-39-208:~$ cat case-cp.sh
+cat: case-cp.sh: No such file or directory
+ubuntu@ip-172-31-39-208:~$ cat Q3a
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>302 Found</title>
+</head><body>
+<h1>Found</h1>
+<p>The document has moved <a href="https://www.gc.hs-mittweida.de/~https:/www.staff.hs-mittweida.de/~">here</a>.</p>
+</body></html>
