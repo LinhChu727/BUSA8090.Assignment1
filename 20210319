@@ -46,3 +46,11 @@ ubuntu@ip-172-31-39-208:~$ cat Q3a
 <h1>Found</h1>
 <p>The document has moved <a href="https://www.gc.hs-mittweida.de/~https:/www.staff.hs-mittweida.de/~">here</a>.</p>
 </body></html>
+ubuntu@ip-172-31-39-208:~$ cat Q3a
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>302 Found</title>
+</head><body>
+<h1>Found</h1>
+<p>The document has moved <a href="https://www.gc.hs-mittweida.de/~https:/www.staff.hs-mittweida.de/~">here</a>.</p>
+</body></html>
