@@ -1,0 +1,37 @@
+#q1.a
+curl https://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/expression.tab > expression.tab
+
+#q1.b
+curl https://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/annotation.tab > annotation.tab
+
+#q1.c
+join -1 1 -2 1 -t $'\t'  -o 1.1,2.2,1.2,2.3 <(sort -k 1 expression.tab) <(sort annotation.tab)
+
+#q1.d
+mysql> use compbiol;
+SELECT DISTINCT a.metabolism
+FROM annotation a
+        INNER JOIN annotation b
+        ON (a.metabolism = b.metabolism
+               AND a.gene <> b.gene;
+
+#q2.a
+-u A1T3 -p compbiol -e 'select m.LastName, 
+m.FirstName from Member m where m.Coach is null;'
+
+#q2.b
+use compbiol;
+SELECT m.LastName, m.FirstName, m.MemberID
+FROM Member m
+WHERE m.JoinDate >= ‘2013-01-01’
+AND m.JoinDate <= ‘2013-12-31’;
+
+#q2.c
+USE compbiol;
+SELECT DISTINCT m.LastName, m.FirstName, m.MemberID
+FROM Member m, Entry e
+WHERE m.MemberID = e.MemberID
+AND e.MemberID NOT IN (SELECT y.MemberID FROM Entry y WHERE y.Year = 2013);
+
+#q2.d
+mysql -u A1T3 -p compbiol -e 'SELECT m.MemberID, m.LastName, m.FirstName FROM Member m WHERE m.MemberID IN (SELECT e.MemberID from Entry e Group By e.MemberID Having COUNT(DISTINCT Year) = (SELECT COUNT(DISTINCT Year) from Entry));'
